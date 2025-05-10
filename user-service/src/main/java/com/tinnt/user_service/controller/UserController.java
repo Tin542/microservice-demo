@@ -1,6 +1,8 @@
 package com.tinnt.user_service.controller;
 
+import com.netflix.discovery.converters.Auto;
 import com.tinnt.user_service.assembler.UserModelAssembler;
+import com.tinnt.user_service.client.ValidateClient;
 import com.tinnt.user_service.dto.request.UserRequestBodyDTO;
 import com.tinnt.user_service.dto.request.UserRequestParamDto;
 import com.tinnt.user_service.dto.response.APIResponseBody;
@@ -44,10 +46,21 @@ public class UserController {
 	@Autowired
 	PagedResourcesAssembler<UserEntity> pagedAssembler;
 
+	@Autowired
+	ValidateClient validate;
+
 	@PostMapping("")
 	public ResponseEntity<APIResponseBody<UserResponseDTO>> createUser(@RequestBody UserRequestBodyDTO dto) {
-		UserResponseDTO user = UserMapper.toDTO(userService.createUser(dto));
+		List<String> errors = validate.validateObject("user", dto);
 		APIResponseBody result = new APIResponseBody();
+		if(errors.size() > 0) {
+			result.setData(null);
+			result.setErrorCode(HttpStatus.BAD_REQUEST);
+			result.setMessage(errors.toString());
+			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+		}
+		UserResponseDTO user = UserMapper.toDTO(userService.createUser(dto));
+
 		result.setData(user);
 		result.setErrorCode(HttpStatus.CREATED);
 		result.setMessage(null);

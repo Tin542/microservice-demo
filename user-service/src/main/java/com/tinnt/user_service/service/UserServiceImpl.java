@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tinnt.user_service.client.TaskClient;
+import com.tinnt.user_service.client.ValidateClient;
 import com.tinnt.user_service.dto.request.UserRequestBodyDTO;
 import com.tinnt.user_service.dto.request.UserRequestParamDto;
 import com.tinnt.user_service.dto.response.TaskResponseDto;
@@ -35,6 +36,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private ValidateClient validate;
 
 	@Override
 	public List<UserEntity> getAllUser() {
