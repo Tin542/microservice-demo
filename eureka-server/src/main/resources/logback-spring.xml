@@ -1,0 +1,20 @@
+<configuration>
+    <property name="LOG_DIR" value="logs/eureka-server"/>
+
+    <appender name="DAILY_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Ghi trực tiếp vào file có tên theo ngày -->
+            <fileNamePattern>${LOG_DIR}/eureka-server-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>1</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="DAILY_LOG"/>
+    </root>
+</configuration>

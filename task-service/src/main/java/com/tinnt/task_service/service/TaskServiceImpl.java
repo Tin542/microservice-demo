@@ -25,8 +25,8 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public TaskEntity createTask(TaskRequestBodyDto dto) {
 
-        UserResponseDto assignedToUser = userClient.getUserForAssigned(dto.getAssignedTo());
-        dto.setAssignedTo(assignedToUser.getUsername());
+//        UserResponseDto assignedToUser = userClient.getUserForAssigned(dto.getAssignedTo());
+//        dto.setAssignedTo(assignedToUser.getUsername());
         TaskEntity te = taskRepository.create(dto);
         return te;
     }
