@@ -51,14 +51,14 @@ public class UserController {
 
 	@PostMapping("")
 	public ResponseEntity<APIResponseBody<UserResponseDTO>> createUser(@RequestBody UserRequestBodyDTO dto) {
-		List<String> errors = validate.validateObject("user", dto);
+//		List<String> errors = validate.validateObject("user", dto);
 		APIResponseBody result = new APIResponseBody();
-		if(errors.size() > 0) {
-			result.setData(null);
-			result.setErrorCode(HttpStatus.BAD_REQUEST);
-			result.setMessage(errors.toString());
-			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
-		}
+//		if(errors.size() > 0) {
+//			result.setData(null);
+//			result.setErrorCode(HttpStatus.BAD_REQUEST);
+//			result.setMessage(errors.toString());
+//			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+//		}
 		UserResponseDTO user = UserMapper.toDTO(userService.createUser(dto));
 
 		result.setData(user);
