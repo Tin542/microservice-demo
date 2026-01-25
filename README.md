@@ -9,6 +9,7 @@
 - `user-service` – Manages user accounts and data - http://localhost:9999
 - `task-service` – Manages tasks assigned to users - http://localhost:8888
 - `validation` – Shared validation module - http://localhost:7777
+- `finace-service` – Handle income/outcome finnance - http://localhost:7777
 # 3. Logger
 - Each service uses **Logback** to write logs to a file named after the current date.
 - 📂 Example Log File Structure:
