@@ -29,10 +29,20 @@
         </processorPath>
         <module name="validation" />
       </profile>
+      <profile name="Annotation profile for finance-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
+        </processorPath>
+        <module name="finance-service" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="demo" target="17" />
       <module name="demo (1) (com.example)" target="17" />
+      <module name="money-mate" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -41,6 +51,8 @@
       <module name="demo" options="-parameters" />
       <module name="demo (1) (com.example)" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
+      <module name="finance-service" options="-parameters" />
+      <module name="money-mate" options="-parameters" />
       <module name="task-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
       <module name="validation" options="-parameters" />
