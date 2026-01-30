@@ -4,6 +4,7 @@ import com.tinnt.finance_service.dto.request.CreateIncomeRequestDto;
 import com.tinnt.finance_service.entity.IncomeEntity;
 
 public interface IncomeRepository {
-    IncomeEntity creatIncome(CreateIncomeRequestDto request);
+    IncomeEntity createIncome(CreateIncomeRequestDto request);
+    IncomeEntity getIncomeByCode(String incomeCode);
 
 }
