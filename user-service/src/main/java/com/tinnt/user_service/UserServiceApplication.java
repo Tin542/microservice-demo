@@ -3,12 +3,14 @@ package com.tinnt.user_service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 @EnableFeignClients
+@EnableDiscoveryClient
 @Slf4j
 public class UserServiceApplication {
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceApplication.class);

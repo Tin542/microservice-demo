@@ -5,6 +5,7 @@ import com.tinnt.finance_service.dto.request.CreateIncomeRequestDto;
 import com.tinnt.finance_service.dto.response.CreateIncomeResponseDto;
 import com.tinnt.finance_service.dto.response.DetailIncomeResponseDto;
 import com.tinnt.finance_service.service.IncomeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class IncomeController {
     IncomeService incomeService;
 
     @PostMapping("")
-    public ResponseEntity<?> createIncome(@RequestBody CreateIncomeRequestDto dto) {
+    public ResponseEntity<?> createIncome(@Valid @RequestBody CreateIncomeRequestDto dto) {
         CreateIncomeResponseDto result = incomeService.createIncome(dto);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }

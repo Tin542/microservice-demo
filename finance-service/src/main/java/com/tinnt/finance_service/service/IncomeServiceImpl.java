@@ -23,11 +23,11 @@ public class IncomeServiceImpl implements IncomeService{
         IncomeEntity entity = repository.createIncome(request);
         CreateIncomeResponseDto response = new CreateIncomeResponseDto();
 
-        if (response != null) {
+        if (entity != null) {
             response.setIncomeCode(entity.getIncomeCode());
             response.setDate(entity.getDate());
         }
-        
+
         return response;
     }
 

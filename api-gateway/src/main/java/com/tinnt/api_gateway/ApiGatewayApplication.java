@@ -6,8 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
 @Slf4j
 @SpringBootApplication
+@EnableDiscoveryClient
 public class ApiGatewayApplication {
 	private static final Logger logger = LoggerFactory.getLogger(ApiGatewayApplication.class);
 

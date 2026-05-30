@@ -25,6 +25,7 @@ public class IncomeRepositoryImpl implements IncomeRepository {
         entity.setNote(request.getNote());
         entity.setDate(request.getDate());
         entity.setAmount(request.getAmount());
+        entity.setCategoryCode(request.getCategoryCode());
 
         return mongoTemplate.save(entity);
     }

@@ -6,6 +6,7 @@ import com.tinnt.task_service.dto.request.TaskRequestParamDto;
 import com.tinnt.task_service.dto.response.TaskResponseDto;
 import com.tinnt.task_service.entity.TaskEntity;
 import com.tinnt.task_service.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,13 +46,13 @@ public class TaskController {
     }
 
     @PostMapping("")
-    public ResponseEntity<EntityModel<TaskResponseDto>> createTask(@RequestBody TaskRequestBodyDto dto) {
+    public ResponseEntity<EntityModel<TaskResponseDto>> createTask(@Valid @RequestBody TaskRequestBodyDto dto) {
         TaskEntity result = taskService.createTask(dto);
         return new ResponseEntity<>(assembler.toModel(result), HttpStatus.CREATED);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<EntityModel<TaskResponseDto>> updateTask(@PathVariable("id") String taskId, @RequestBody TaskRequestBodyDto dto) {
+    public ResponseEntity<EntityModel<TaskResponseDto>> updateTask(@PathVariable("id") String taskId, @Valid @RequestBody TaskRequestBodyDto dto) {
         TaskEntity result = taskService.updateTask(taskId, dto);
         return new ResponseEntity<>(assembler.toModel(result), HttpStatus.OK);
     }

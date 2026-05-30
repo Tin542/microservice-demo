@@ -10,7 +10,8 @@ import com.tinnt.user_service.dto.response.UserResponseDTO;
 import com.tinnt.user_service.entity.UserEntity;
 import com.tinnt.user_service.mapper.UserMapper;
 import com.tinnt.user_service.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -50,15 +51,8 @@ public class UserController {
 	ValidateClient validate;
 
 	@PostMapping("")
-	public ResponseEntity<APIResponseBody<UserResponseDTO>> createUser(@RequestBody UserRequestBodyDTO dto) {
-//		List<String> errors = validate.validateObject("user", dto);
+	public ResponseEntity<APIResponseBody<UserResponseDTO>> createUser(@Valid @RequestBody UserRequestBodyDTO dto) {
 		APIResponseBody result = new APIResponseBody();
-//		if(errors.size() > 0) {
-//			result.setData(null);
-//			result.setErrorCode(HttpStatus.BAD_REQUEST);
-//			result.setMessage(errors.toString());
-//			return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
-//		}
 		UserResponseDTO user = UserMapper.toDTO(userService.createUser(dto));
 
 		result.setData(user);
@@ -110,7 +104,7 @@ public class UserController {
 	}
 
 	@PatchMapping("/{id}")
-	public ResponseEntity<UserResponseDTO> update(@PathVariable("id") String userId, @RequestBody UserRequestBodyDTO dto) throws Exception {
+	public ResponseEntity<UserResponseDTO> update(@PathVariable("id") String userId, @Valid @RequestBody UserRequestBodyDTO dto) throws Exception {
 		UserEntity entity = userService.updateUser(dto, userId);
 		UserResponseDTO result = UserMapper.toDTO(entity);
 		return new ResponseEntity<>(result, HttpStatus.OK);
